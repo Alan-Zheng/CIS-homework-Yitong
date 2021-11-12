@@ -15,11 +15,7 @@ public class Schedule {
         sb.append('+').append("-".repeat(54)).append("+\n");
 
         for (int i = 0; i < courses.size(); i++)
-            sb.append(String.format("| %d | ", i + 1))
-                    .append(String.format("%30s", courses.get(i)[0]))
-                    .append(" | ")
-                    .append(String.format("%15s", courses.get(i)[1]))
-                    .append(" |\n");
+            sb.append(String.format("| %d | %30s | %15s |\n", i + 1, courses.get(i)[0], courses.get(i)[1]));
 
         sb.append('+').append("-".repeat(54)).append("+\n");
 
