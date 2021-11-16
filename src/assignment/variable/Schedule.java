@@ -1,4 +1,4 @@
-package practice.variable;
+package assignment.variable;
 
 import java.util.ArrayList;
 

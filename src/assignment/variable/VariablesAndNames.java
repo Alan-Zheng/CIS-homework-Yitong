@@ -1,4 +1,4 @@
-package practice.variable;
+package assignment.variable;
 
 public class VariablesAndNames {
     public static void main (String[] args) {
