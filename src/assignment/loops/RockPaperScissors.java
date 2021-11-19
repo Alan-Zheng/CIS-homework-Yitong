@@ -1,4 +1,4 @@
-package assignment.rps;
+package assignment.loops;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -27,11 +27,15 @@ public class RockPaperScissors {
      * @param args Required.
      */
     public static void main (String[] args) {
+        // Variables setup
         Scanner scn = new Scanner(System.in);
+        String[] match = {"rock", "paper", "scissor"};
+        String startMsg = "Welcome to the rock-paper-scissors game!\n  1. rock  2. paper  3. scissor\n",
+                quitMsg = "Thank you for playing.";
 
         while (true) { // Game loop
             // Start message
-            System.out.println("Welcome to the rock-paper-scissors game!\n  1. rock  2. paper  3. scissor\n");
+            System.out.println(startMsg);
             System.out.print("Ready? Rock paper scissors! ");
 
             int response;
@@ -59,7 +63,6 @@ public class RockPaperScissors {
             else System.out.println("You lose!");
 
             // Print the choices
-            String[] match = {"rock", "paper", "scissor"};
             System.out.printf("\n----------\nYou: %s\n", match[response - 1]);
             System.out.printf("Computer: %s\n----------\n", match[computer - 1]);
 
@@ -68,7 +71,7 @@ public class RockPaperScissors {
 
             // Quit message if the user not going to play anymore.
             if (!(confirm.equalsIgnoreCase("y") || confirm.equalsIgnoreCase("yes"))) {
-                System.out.println("Thank you for playing.");
+                System.out.println(quitMsg);
                 return;
             }
 
