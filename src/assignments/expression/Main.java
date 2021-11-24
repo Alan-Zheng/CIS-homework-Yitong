@@ -54,6 +54,8 @@ public class Main {
         // ANSWER
         System.out.println((7 + 3) * Math.sin(45) + 2 - Math.pow(5.0, 3));
         System.out.println(10 * Math.sin(45) + 2 - 125.0);
-        System.out.println(10 * Math.sin(45) - 123.0);
+        System.out.println(10 * 0.8509035245341184 - 123.0);
+        System.out.println(8.509035245341184 - 123.0);
+        System.out.println(-114.490964754658816);
     }
 }

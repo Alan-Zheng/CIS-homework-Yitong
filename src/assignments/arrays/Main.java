@@ -14,7 +14,6 @@ public class Main {
 
     /**
      * The main method.
-     * "Cheat ver." in Q1 & Q2 is for verifying the answer.
      * @param args Required.
      */
     public static void main (String[] args) {
@@ -26,14 +25,10 @@ public class Main {
             firstArray[i] = (int) Math.floor(Math.random() * 6) + 1;
 
         /* ANSWER FOR Q1 */
-        // Standard ver.
         int count = 0;
         for (int x : firstArray)
             if (x == 1) count++;
-        System.out.printf("There are %d 1s. Verify: ", count);
-
-        // Cheat ver.
-        System.out.println(Arrays.stream(firstArray).filter(x -> x == 1).count());
+        System.out.printf("There are %d 1s.", count);
         /* ENDS */
 
         // Second array
@@ -44,14 +39,10 @@ public class Main {
             secondArray[i] = (int) Math.floor(Math.random() * 100) + 1;
 
         /* ANSWER FOR Q2 */
-        // Standard ver.
         int sum = 0;
         for (int x: secondArray)
             sum += x;
-        System.out.printf("The average is %.1f. Verify: ", (double) sum / secondArray.length);
-
-        // Cheat ver.
-        System.out.println(Arrays.stream(secondArray).average().orElseThrow());
+        System.out.printf("The average is %.1f.", (double) sum / secondArray.length);
         /* ENDS */
 
         System.out.println("Second array:");
