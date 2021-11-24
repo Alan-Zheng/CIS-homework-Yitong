@@ -1,4 +1,4 @@
-package assignment.ifstatement;
+package assignments.ifstatement;
 
 import java.util.Scanner;
 

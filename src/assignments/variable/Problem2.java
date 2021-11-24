@@ -1,4 +1,4 @@
-package assignment.variable;
+package assignments.variable;
 
 public class Problem2 {
     public static void main (String[] args) {
