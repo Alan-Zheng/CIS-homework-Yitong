@@ -1,4 +1,4 @@
-package assignments.ifstatement;
+package assignments.no4ifelseif;
 
 import java.util.Scanner;
 

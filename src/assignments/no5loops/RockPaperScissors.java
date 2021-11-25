@@ -1,4 +1,4 @@
-package assignments.loops;
+package assignments.no5loops;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

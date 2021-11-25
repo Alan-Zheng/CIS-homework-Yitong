@@ -1,4 +1,4 @@
-package assignments.variable;
+package assignments.no2variable;
 
 public class VariablesAndNames {
     public static void main (String[] args) {

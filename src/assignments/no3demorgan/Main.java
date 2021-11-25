@@ -1,4 +1,4 @@
-package assignments.demorgan;
+package assignments.no3demorgan;
 
 public class Main {
     public static void main (String[] args) {

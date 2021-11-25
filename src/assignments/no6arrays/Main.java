@@ -1,4 +1,4 @@
-package assignments.arrays;
+package assignments.no6arrays;
 
 import java.util.Arrays;
 

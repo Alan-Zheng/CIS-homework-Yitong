@@ -1,4 +1,4 @@
-package assignments.ifstatement;
+package assignments.no4ifelseif;
 
 public class ElseAndIf {
     public static void main(String[] args) {
