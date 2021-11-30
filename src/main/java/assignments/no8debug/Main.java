@@ -1,7 +1,5 @@
 package assignments.no8debug;
 
-import java.util.Scanner;
-
 public class Main {
     static final String vowels = "aeiou";
     static final String bob = "bob";
@@ -67,6 +65,6 @@ public class Main {
          */
         System.out.println("Number of vowels: " + problemOne("azcbobobegghakl"));
         System.out.println("Number of bobs: " + problemTwo("azcbobobegghakl"));
-        System.out.println("Longest: " + problemThree("tunivklq"));
+        System.out.println("Longest: " + problemThree("azcbobobegghakl"));
     }
 }
