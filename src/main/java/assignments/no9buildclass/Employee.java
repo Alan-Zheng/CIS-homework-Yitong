@@ -1,5 +1,6 @@
 package assignments.no9buildclass;
 
+@SuppressWarnings("unused")
 public class Employee {
     private final int id;
     private final String firstName, lastName;
