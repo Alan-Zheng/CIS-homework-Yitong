@@ -36,10 +36,6 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee[" +
-                "id=" + id +
-                ", name=" + this.getName() +
-                ", salary=" + salary +
-                ']';
+        return String.format("Employee[id=%d, name='%s', salary=%d]", this.id, this.getName(), this.salary);
     }
 }
