@@ -5,6 +5,7 @@ import java.util.ArrayList;
 /**
  * This class holds the information of a {@code School}.
  */
+@SuppressWarnings("unused")
 public class School {
     private final ArrayList<Teacher> teachers;
     private final ArrayList<Student> students;

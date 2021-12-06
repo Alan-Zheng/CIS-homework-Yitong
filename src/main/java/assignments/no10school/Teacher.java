@@ -3,6 +3,7 @@ package assignments.no10school;
 /**
  * This class holds information about a {@code Teacher}.
  */
+@SuppressWarnings("unused")
 public class Teacher {
     private String firstName, lastName;
     private String subject;
