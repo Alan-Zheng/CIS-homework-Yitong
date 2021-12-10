@@ -1,13 +1,22 @@
 package assignments.no11time;
 
-import junit.framework.TestCase;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ErrorCollector;
 
-public class TimeTest extends TestCase {
+import static org.junit.Assert.assertEquals;
+
+public class TimeTest {
+    @Rule
+    public ErrorCollector collector = new ErrorCollector();
+
+    @Test
     public void testInvalidInput () {
         Time t = new Time(-1, 299, 8080);
         assertEquals("00:00:00", t.toString());
     }
 
+    @Test
     public void testGetters () {
         Time t = new Time(2, 30, 34);
         assertEquals(2, t.getHour());
@@ -15,6 +24,7 @@ public class TimeTest extends TestCase {
         assertEquals(34, t.getSecond());
     }
 
+    @Test
     public void testSetters () {
         Time t = new Time(7, 0, 39);
         t.setHour(8);
@@ -28,6 +38,7 @@ public class TimeTest extends TestCase {
         assertEquals("00:00:00", t.toString());
     }
 
+    @Test
     public void testNextSecond() {
         Time t = new Time(9, 59, 59);
 
@@ -37,6 +48,7 @@ public class TimeTest extends TestCase {
         assertEquals("10:00:00", tt.toString());
     }
 
+    @Test
     public void testPreviousSecond() {
         Time t = new Time(22, 0, 0);
 
