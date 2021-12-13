@@ -4,7 +4,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ErrorCollector;
 
-import java.util.Arrays;
 import java.util.Date;
 
 import static org.junit.Assert.*;

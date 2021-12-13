@@ -4,6 +4,8 @@ import javax.security.sasl.SaslClient;
 import java.util.ArrayList;
 import java.util.Date;
 
+
+@SuppressWarnings({"FieldMayBeFinal", "unused"})
 public class Customer {
     private int accountNumber;
     private ArrayList<Deposit> deposits;
@@ -14,6 +16,7 @@ public class Customer {
     private String name;
     public static final String CHECKING = "Checking";
     public static final String SAVING = "Saving";
+    @SuppressWarnings("FieldCanBeLocal")
     private final int OVERDRAFT = -100;
 
     /**
