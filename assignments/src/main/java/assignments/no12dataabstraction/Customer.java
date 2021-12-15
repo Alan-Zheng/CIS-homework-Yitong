@@ -1,6 +1,5 @@
 package assignments.no12dataabstraction;
 
-import javax.security.sasl.SaslClient;
 import java.util.ArrayList;
 import java.util.Date;
 
