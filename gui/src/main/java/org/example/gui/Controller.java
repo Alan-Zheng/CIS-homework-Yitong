@@ -34,6 +34,7 @@ public class Controller {
             case "=" -> {
                 result = String.valueOf(Evaluator.evaluate());
                 field.setText(result);
+                expression = "";
                 return;
             }
             // Clear button
