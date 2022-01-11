@@ -1,4 +1,4 @@
-package org.example.gui;
+package org.example.gui.calculator;
 
 import javafx.event.Event;
 import javafx.scene.control.Button;

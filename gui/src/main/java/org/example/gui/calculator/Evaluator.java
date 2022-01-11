@@ -1,4 +1,4 @@
-package org.example.gui;
+package org.example.gui.calculator;
 
 import java.util.EmptyStackException;
 import java.util.LinkedList;
