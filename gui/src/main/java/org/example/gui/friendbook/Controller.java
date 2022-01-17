@@ -2,7 +2,6 @@ package org.example.gui.friendbook;
 
 import javafx.scene.control.*;
 
-import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 public class Controller {
@@ -11,11 +10,11 @@ public class Controller {
     public MenuButton month, date;
     public Button done;
 
-    public TableView<Friend> friendTable;
+    public ListView<Friend> friends = new ListView<>();
+    public Label nameLabel, phoneLabel, emailLabel, birthLabel;
 
     // Store information about adding / deleting friends.
     private char mode = ' ';
-    private ArrayList<Friend> friends = new ArrayList<>();
 
     public void onCreateBtnClick () {
         mode = 'A';
@@ -100,14 +99,17 @@ public class Controller {
                     || emailField.getText().equals(""))
                 msg.setText("Please fill in all the information.");
             else {
-                friends.add(new Friend(firstNameField.getText(), lastNameField.getText(), phoneField.getText(),
-                        month.getText() + ' ' + date.getText()));
+                friends.getItems().add(
+                        new Friend(firstNameField.getText(), lastNameField.getText(),
+                                phoneField.getText(), emailField.getText(), month.getText() + ' ' + date.getText()));
 
                 msg.setText("Friend added.");
             }
         } else if (mode == 'D') {
             try {
-                friends.remove(friends.stream().findAny().orElseThrow());
+                friends.getItems().remove(friends.getItems().stream()
+                        .filter(o -> o.getName().equals(firstNameField.getText() + ' ' + lastNameField.getText()))
+                        .findAny().orElseThrow());
                 msg.setText("Friend deleted.");
             } catch (NoSuchElementException e) {
                 msg.setText("The friend is not in the friend book.");
@@ -125,9 +127,20 @@ public class Controller {
         date.setText("Date");
     }
 
-    public void tableGen () { // TODO: ???
-        for (Friend f : friends) {
-            friendTable.getItems().add(f);
-        }
+    public void display () {
+        try {
+            Friend f = friends.getSelectionModel().getSelectedItem();
+            nameLabel.setText(f.getName());
+            phoneLabel.setText(f.getPhone());
+            emailLabel.setText(f.getEmail());
+            birthLabel.setText(f.getBirthday());
+        } catch (NullPointerException e) { /* skip */ }
+    }
+
+    public void clearView () {
+        nameLabel.setText("");
+        phoneLabel.setText("");
+        emailLabel.setText("");
+        birthLabel.setText("");
     }
 }

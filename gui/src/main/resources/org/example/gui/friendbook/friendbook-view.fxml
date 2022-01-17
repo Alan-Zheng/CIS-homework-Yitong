@@ -2,12 +2,11 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
@@ -42,15 +41,40 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-            <Tab onSelectionChanged="#tableGen" text="View">
+            <Tab onSelectionChanged="#clearView" text="View">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="friendTable" prefHeight="571.0" prefWidth="600.0">
-                          <columns>
-                            <TableColumn prefWidth="599.0" text="Friends" />
-                          </columns>
-                        </TableView>
+                        <ListView fx:id="friends" onMouseClicked="#display" prefHeight="572.0" prefWidth="306.0" />
+                        <Label layoutX="386.0" layoutY="65.0" text="INFORMATION">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="331.0" layoutY="128.0" text="Full name:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="331.0" layoutY="169.0" text="Phone number:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="331.0" layoutY="254.0" text="Birthday:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="331.0" layoutY="210.0" text="Email:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="phoneLabel" layoutX="433.0" layoutY="171.0" />
+                        <Label fx:id="nameLabel" layoutX="433.0" layoutY="130.0" />
+                        <Label fx:id="emailLabel" layoutX="433.0" layoutY="212.0" />
+                        <Label fx:id="birthLabel" layoutX="433.0" layoutY="256.0" />
                      </children>
                   </AnchorPane>
               </content>
