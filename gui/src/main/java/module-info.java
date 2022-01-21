@@ -6,6 +6,8 @@ module org.example.gui {
 
     opens org.example.gui.calculator to javafx.fxml;
     opens org.example.gui.friendbook to javafx.fxml;
+    opens org.example.gui.friendsbook to javafx.fxml;
     exports org.example.gui.calculator;
     exports org.example.gui.friendbook;
+    exports org.example.gui.friendsbook;
 }
