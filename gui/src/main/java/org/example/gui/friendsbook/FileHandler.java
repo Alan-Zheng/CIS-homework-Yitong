@@ -8,34 +8,34 @@ public class FileHandler {
             CLOSE_PATH = "friends-book\\close.txt",
             GENERAL_PATH = "friends-book\\general.txt";
 
-    private BufferedReader br;
-    private FileReader fr;
+    private final ArrayList<Friend> loaded = new ArrayList<>();
+
     private PrintWriter pw;
     private FileWriter fw;
+
+    public ArrayList<Friend> getLoaded () {
+        return loaded;
+    }
 
     /**
      * Load data from selected group file(s) and convert them into {@code Friend} objects.
      *
      * @param files One or more files that is going to be loaded.
-     * @return the complete list of friends loaded from files.
      * @throws IOException if failed to open one or more files.
      */
-    ArrayList<Friend> load (String... files) throws IOException {
-        ArrayList<Friend> friendList = new ArrayList<>();
+    void load (String... files) throws IOException {
+        loaded.clear();
 
         for (String file : files) {
-            fr = new FileReader(file);
-            br = new BufferedReader(fr);
+            BufferedReader br = new BufferedReader(new FileReader(file));
 
             String line;
             while ((line = br.readLine()) != null) {
                 String[] info = line.split(",");
 
-                friendList.add(new Friend(info[0], info[1], info[2], info[3], info[4]));
+                loaded.add(new Friend(info[0], info[1], info[2], info[3], info[4]));
             }
         }
-
-        return friendList;
     }
 
     /**
@@ -49,7 +49,32 @@ public class FileHandler {
         fw = new FileWriter(file, true);
         pw = new PrintWriter(fw);
 
-        pw.printf("%s,%s,%s,%s\n", friend.getName(), friend.getPhone(), friend.getEmail(), friend.getBirthday());
+        pw.printf("%s,%s,%s,%s,%s\n",
+                friend.getName(), friend.getPhone(), friend.getEmail(), friend.getBirthday(), friend.getGroup());
+
+        pw.close();
+    }
+
+    /**
+     * Overwrite the friend list of a dedicated category.
+     *
+     * @param category The category of the group; must be one of the three following string (case-sensitive):
+     *                 <ul><li>Families</li>
+     *                 <li>Close friends</li>
+     *                 <li>General friends</li></ul>
+     * @throws IOException if failed to open the category.
+     */
+    void rewrite (String category) throws IOException {
+        fw = new FileWriter(switch (category) {
+            case "Families" -> FileHandler.FAMILY_PATH;
+            case "Close friends" -> FileHandler.CLOSE_PATH;
+            case "General friends" -> FileHandler.GENERAL_PATH;
+            default -> "";
+        }, false);
+        pw = new PrintWriter(fw);
+
+        loaded.stream().filter(f -> f.getGroup().equals(category)).forEach(f ->
+                pw.printf("%s,%s,%s,%s,%s\n", f.getName(), f.getPhone(), f.getEmail(), f.getBirthday(), f.getGroup()));
 
         pw.close();
     }

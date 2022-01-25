@@ -84,6 +84,12 @@
                         <RadioButton fx:id="familySelect" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#display" text="Families" />
                         <RadioButton fx:id="closeSelect" layoutX="97.0" layoutY="14.0" mnemonicParsing="false" onAction="#display" text="Close friends" />
                         <RadioButton fx:id="generalSelect" layoutX="204.0" layoutY="14.0" mnemonicParsing="false" onAction="#display" text="General friends" />
+                        <Label layoutX="331.0" layoutY="298.0" prefHeight="20.0" prefWidth="42.0" text="Group:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="groupLabel" layoutX="433.0" layoutY="300.0" />
                      </children>
                   </AnchorPane>
               </content>

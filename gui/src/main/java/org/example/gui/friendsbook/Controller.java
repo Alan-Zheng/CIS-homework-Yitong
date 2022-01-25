@@ -13,7 +13,7 @@ public class Controller {
 
     public ListView<Friend> friends = new ListView<>();
     public RadioButton familySelect, closeSelect, generalSelect;
-    public Label nameLabel, phoneLabel, emailLabel, birthLabel;
+    public Label nameLabel, phoneLabel, emailLabel, birthLabel, groupLabel;
 
     private final FileHandler dataAccess = new FileHandler();
 
@@ -21,6 +21,7 @@ public class Controller {
      * Configure the create page.
      * Triggered when user enters the page.
      */
+    @SuppressWarnings("DuplicatedCode")
     public void onCreate () {
         msg.setText("");
 
@@ -71,6 +72,7 @@ public class Controller {
                     case "Families" -> FileHandler.FAMILY_PATH;
                     case "Close friends" -> FileHandler.CLOSE_PATH;
                     case "General friends" -> FileHandler.GENERAL_PATH;
+                    default -> "";
                 }, f);
                 msg.setText("Friend added.");
             } catch (IOException e) {
@@ -79,16 +81,6 @@ public class Controller {
                 System.err.println("[FATAL] data lost: failed to open file when trying to write.");
             }
         }
-//        } else if (mode == 'D') {
-//            try {
-//                friends.getItems().remove(friends.getItems().stream()
-//                        .filter(o -> o.getName().equals(firstNameField.getText() + ' ' + lastNameField.getText()))
-//                        .findAny().orElseThrow());
-//                msg.setText("Friend deleted.");
-//            } catch (NoSuchElementException e) {
-//                msg.setText("The friend is not in the friend book.");
-//            }
-//        }
 
         // Cleanup
         firstName.clear();
@@ -100,9 +92,26 @@ public class Controller {
         group.setText("Group");
     }
 
+    /**
+     * Delete the selected friend from the friend book.
+     * Triggered when the "delete" button on view page is clicked.
+     */
     public void onDelete () {
         try {
             Friend f = friends.getSelectionModel().getSelectedItem();
+            for (Friend fr : dataAccess.getLoaded()) {
+                if (fr.toString().equals(f.toString())) {
+                    dataAccess.getLoaded().remove(fr);
+                    dataAccess.rewrite(fr.getGroup());
+
+                    break;
+                }
+            }
+
+            clearView();
+            display();
+        } catch (IOException e) {
+            System.err.println("[FATAL] data lost: failed to open file when trying to write,");
         } catch (NullPointerException e) { /* skip */ }
     }
 
@@ -111,19 +120,27 @@ public class Controller {
      * Triggered when any radio button is clicked.
      */
     public void display () {
+        clearView();
+
         ArrayList<String> loadPrep = new ArrayList<>();
         if (familySelect.isSelected()) loadPrep.add(FileHandler.FAMILY_PATH);
         if (closeSelect.isSelected()) loadPrep.add(FileHandler.CLOSE_PATH);
         if (generalSelect.isSelected()) loadPrep.add(FileHandler.GENERAL_PATH);
 
         try {
-            ArrayList<Friend> loadedList = dataAccess.load(loadPrep.toArray(new String[0]));
-            friends.getItems().addAll(loadedList);
+            dataAccess.load(loadPrep.toArray(new String[0]));
+
+            friends.getItems().clear();
+            friends.getItems().addAll(dataAccess.getLoaded());
         } catch (IOException e) {
             System.err.println("[FATAL] data lost: failed to open file when trying to access.");
         }
     }
 
+    /**
+     * Display detailed information of a selected friend.
+     * Triggered when the list is clicked.
+     */
     public void displayEach () {
         try {
             Friend f = friends.getSelectionModel().getSelectedItem();
@@ -131,14 +148,19 @@ public class Controller {
             phoneLabel.setText(f.getPhone());
             emailLabel.setText(f.getEmail());
             birthLabel.setText(f.getBirthday());
-            // TODO group label
+            groupLabel.setText(f.getGroup());
         } catch (NullPointerException e) { /* skip */ }
     }
 
+    /**
+     * Clear all the labels.
+     * Triggered when the user get into or leave the "view" section. Can be called from other methods.
+     */
     public void clearView () {
         nameLabel.setText("");
         phoneLabel.setText("");
         emailLabel.setText("");
         birthLabel.setText("");
+        groupLabel.setText("");
     }
 }
