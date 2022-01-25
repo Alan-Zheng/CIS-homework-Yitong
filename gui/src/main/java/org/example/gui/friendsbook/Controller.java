@@ -68,7 +68,7 @@ public class Controller {
                     month.getText() + ' ' + date.getText(), group.getText());
 
             try { // Prevent IOException
-                dataAccess.append(switch (f.getGroup()) {
+                dataAccess.append(switch (f.group()) {
                     case "Families" -> FileHandler.FAMILY_PATH;
                     case "Close friends" -> FileHandler.CLOSE_PATH;
                     case "General friends" -> FileHandler.GENERAL_PATH;
@@ -102,7 +102,7 @@ public class Controller {
             for (Friend fr : dataAccess.getLoaded()) {
                 if (fr.toString().equals(f.toString())) {
                     dataAccess.getLoaded().remove(fr);
-                    dataAccess.rewrite(fr.getGroup());
+                    dataAccess.rewrite(fr.group());
 
                     break;
                 }
@@ -144,11 +144,11 @@ public class Controller {
     public void displayEach () {
         try {
             Friend f = friends.getSelectionModel().getSelectedItem();
-            nameLabel.setText(f.getName());
-            phoneLabel.setText(f.getPhone());
-            emailLabel.setText(f.getEmail());
-            birthLabel.setText(f.getBirthday());
-            groupLabel.setText(f.getGroup());
+            nameLabel.setText(f.name());
+            phoneLabel.setText(f.phone());
+            emailLabel.setText(f.email());
+            birthLabel.setText(f.birthday());
+            groupLabel.setText(f.group());
         } catch (NullPointerException e) { /* skip */ }
     }
 

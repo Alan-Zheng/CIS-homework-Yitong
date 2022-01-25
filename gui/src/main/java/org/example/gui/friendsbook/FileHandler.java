@@ -50,7 +50,7 @@ public class FileHandler {
         pw = new PrintWriter(fw);
 
         pw.printf("%s,%s,%s,%s,%s\n",
-                friend.getName(), friend.getPhone(), friend.getEmail(), friend.getBirthday(), friend.getGroup());
+                friend.name(), friend.phone(), friend.email(), friend.birthday(), friend.group());
 
         pw.close();
     }
@@ -73,8 +73,8 @@ public class FileHandler {
         }, false);
         pw = new PrintWriter(fw);
 
-        loaded.stream().filter(f -> f.getGroup().equals(category)).forEach(f ->
-                pw.printf("%s,%s,%s,%s,%s\n", f.getName(), f.getPhone(), f.getEmail(), f.getBirthday(), f.getGroup()));
+        loaded.stream().filter(f -> f.group().equals(category)).forEach(f ->
+                pw.printf("%s,%s,%s,%s,%s\n", f.name(), f.phone(), f.email(), f.birthday(), f.group()));
 
         pw.close();
     }
